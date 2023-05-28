@@ -15,6 +15,7 @@ var map = L.map('map-canvas', { // eslint-disable-line no-undef
 
 });
 map.attributionControl.setPrefix('');
+map.locate({setView: true, maxZoom: 16});
 
 // 1. BRT-Achtergrondkaart van PDOK:
 var options = { maxZoom: 14, attribution: 'Map data: <a href="http://www.pdok.nl">BRT Achtergrondkaart</a>' }
@@ -97,17 +98,6 @@ function onLocationError(e) {
 }
 
 map.on('locationerror', onLocationError);
-function adjustMapHeight() {
-      var mapCanvas = document.getElementById('map-canvas');
-      var deviceWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      var deviceHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-      if (isWindows) {
-        mapCanvas.style.height = deviceHeight + 'px';
-      }
-    }
-    window.addEventListener('load', adjustMapHeight);
-    window.addEventListener('resize', adjustMapHeight);
 
 function onMapClick(e) {
   var lng = e.latlng.lng;
